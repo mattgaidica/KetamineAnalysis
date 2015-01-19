@@ -1,5 +1,5 @@
 function pieces=findCleanSpans(data,thresh,pieceLength)
-    threshIdx=find(abs(data(1,:))>thresh);
+    threshIdx=find(abs(data)>thresh);
     pieces = [];
     for i=1:length(threshIdx)-1
         if(i==1)
