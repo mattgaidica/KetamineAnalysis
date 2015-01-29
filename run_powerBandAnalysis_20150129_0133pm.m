@@ -54,7 +54,7 @@ for i=1:length(allPowerPieces_0916)
     allSpectrumPieces = [allSpectrumPieces;spectrumPieces];
 end
 
-% figure;
+%figure;
 subplot(2,1,2);
 
 legendMap = {};

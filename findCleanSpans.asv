@@ -1,13 +1,22 @@
 function pieces=findCleanSpans(data,thresh,pieceLength)
     threshIdx=find(abs(data)>thresh);
-    %handle if entire data strip is below thresh, or only one crossing
-    threshIdx = [1 threshIdx length(data)];
+    %handle if entire data strip is below thresh
+    if(isempty(threshIdx))
+        threshIdx = [1 length(data)];
+    end
+    %handle if there is only one threshold crossing
+    if(length(threshIdx==1))
+        threshIdx = 
+    end
     
     pieces = [];
-    for i=1:length(threshIdx)-1
+    for i=1:length(threshIdx)
         if(i==1)
             startIdx = 1;
             endIdx = threshIdx(i+1);
+        elseif(i==length(threshIdx))
+            startIdx = threshIdx(i);
+            endIdx = length(data);
         else
             startIdx = threshIdx(i);
             endIdx = threshIdx(i+1);

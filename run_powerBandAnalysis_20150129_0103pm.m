@@ -49,27 +49,15 @@ js = [17:32];
 % end
 
 allSpectrumPieces = [];
-for i=1:length(allPowerPieces_0916)
-    spectrumPieces = allPowerPieces_0916{i}{2}{17,2};
+for i=1:length(allPowerPieces_1125)
+    spectrumPieces = allPowerPieces_1125{i}{2}{17,2};
     allSpectrumPieces = [allSpectrumPieces;spectrumPieces];
 end
 
-% figure;
-subplot(2,1,2);
-
-legendMap = {};
-steps = 10;
-for i=1:steps
-    chunk = size(allSpectrumPieces,1)/steps;
-    hold on;
-    start = (chunk*(i-1))+1;
-    stop = chunk*i;
-    plot(f,smooth(mean(allSpectrumPieces(start:stop,:))),'color',[i/10 1-(i/10) 0],'linewidth',3);
-    legendMap{i} = num2str(i);
-end
-title('0916 Data');
+figure;plot(f,mean(allSpectrumPieces(1:280,:)),'g')
+hold on;plot(f,mean(allSpectrumPieces(280:600,:)),'r')
+hold on;plot(f,mean(allSpectrumPieces(600:end,:)),'k')
+legend('before','during','after')
 xlim([5 80])
 xlabel('freq')
 ylabel('power')
-legend(legendMap)
-
