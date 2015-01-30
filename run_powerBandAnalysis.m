@@ -10,7 +10,6 @@
 % %---> Channel, Spectrum for each Piece, fVector
 
 
-js = [17:32];
 % for i=1:length(js)
 %     betaOverLFP{js(i)} = [];
 % end
@@ -47,29 +46,85 @@ js = [17:32];
 %     disp(js(i));
 %     %plot(betaOverLFP_odd{js(i)},'r');
 % end
+saveDir = 'C:\Users\Matt\Desktop\svn_repository\Students\MattGaidica\KetamineAnalysis\figures\fftCompare';
+js = [1:16];
+h1 = figure('position',[0 0 900 900]);
+for el=1:length(js)
+    
+%     %stark
+%     subplot(4,4,el);
+%     allSpectrumPieces = [];
+%     for i=1:length(allPowerPieces_stark)
+%         spectrumPieces = allPowerPieces_stark{i}{2}{js(el),2};
+%         allSpectrumPieces = [allSpectrumPieces;spectrumPieces];
+%     end
+% 
+%     legendMap = {};
+%     steps = 10;
+%     for i=1:steps
+%         chunk = size(allSpectrumPieces,1)/steps;
+%         hold on;
+%         start = (chunk*(i-1))+1;
+%         stop = chunk*i;
+%         plot(f,smooth(mean(allSpectrumPieces(start:stop,:))),'color',[i/steps 1-(i/steps) 1-(i/steps)],'linewidth',2);
+%         legendMap{i} = num2str(i);
+%     end
+%     title(['stark Data - electrode',num2str(js(el))]);
+%     xlim([40 70])
+%     xlabel('freq')
+%     ylabel('power')
+%     legend(legendMap)
 
-allSpectrumPieces = [];
-for i=1:length(allPowerPieces_0916)
-    spectrumPieces = allPowerPieces_0916{i}{2}{17,2};
-    allSpectrumPieces = [allSpectrumPieces;spectrumPieces];
+    
+    %0916
+%     subplot(4,4,el);
+%     allSpectrumPieces = [];
+%     for i=1:length(allPowerPieces_0916)
+%         spectrumPieces = allPowerPieces_0916{i}{2}{js(el),2};
+%         allSpectrumPieces = [allSpectrumPieces;spectrumPieces];
+%     end
+% 
+%     legendMap = {};
+%     steps = 10;
+%     for i=1:steps
+%         chunk = size(allSpectrumPieces,1)/steps;
+%         hold on;
+%         start = (chunk*(i-1))+1;
+%         stop = chunk*i;
+%         plot(f,smooth(mean(allSpectrumPieces(start:stop,:))),'color',[i/steps 1-(i/steps) 1-(i/steps)],'linewidth',2);
+%         legendMap{i} = num2str(i);
+%     end
+%     title(['20140916 Data - electrode',num2str(js(el))]);
+%     xlim([5 80])
+%     xlabel('freq')
+%     ylabel('power')
+%     legend(legendMap)
+
+    %1125
+    subplot(4,4,el);
+    allSpectrumPieces = [];
+    for i=1:length(allPowerPieces_1125)
+        spectrumPieces = allPowerPieces_1125{i}{2}{js(el),2};
+        allSpectrumPieces = [allSpectrumPieces;spectrumPieces];
+    end
+
+    legendMap = {};
+    steps = 20;
+    for i=1:steps
+        chunk = size(allSpectrumPieces,1)/steps;
+        hold on;
+        start = (chunk*(i-1))+1;
+        stop = chunk*i;
+        plot(f,smooth(mean(allSpectrumPieces(start:stop,:))),'color',[i/steps 1-(i/steps) 1-(i/steps)],'linewidth',2);
+        legendMap{i} = num2str(i);
+    end
+    title(['20141125 Data - electrode',num2str(js(el))]);
+    xlim([5 80])
+    xlabel('freq')
+    ylabel('power')
+    %legend(legendMap)
+
+%     filename = ['fftCompare-electrode',num2str(js(el))];
+%     saveas(h1,fullfile(saveDir,filename),'fig');
+%     close(h1)
 end
-
-% figure;
-subplot(2,1,2);
-
-legendMap = {};
-steps = 10;
-for i=1:steps
-    chunk = size(allSpectrumPieces,1)/steps;
-    hold on;
-    start = (chunk*(i-1))+1;
-    stop = chunk*i;
-    plot(f,smooth(mean(allSpectrumPieces(start:stop,:))),'color',[i/10 1-(i/10) 0],'linewidth',3);
-    legendMap{i} = num2str(i);
-end
-title('0916 Data');
-xlim([5 80])
-xlabel('freq')
-ylabel('power')
-legend(legendMap)
-
