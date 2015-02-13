@@ -16,7 +16,7 @@ function allPlotData=plotAllElectrodes(allPowerPieces,f,js,steps,fRange,titleStr
             stop = chunk*i;
             plotData = mean(allSpectrumPieces(start:stop,:));
             allPlotData(el,i,:) = plotData;
-            plot(f,plotData,'color',[i/steps 1-(i/steps) 1-(i/steps)],'linewidth',2);
+            plot(f,plotData,'color',[i/steps 1-(i/steps) 1-(i/steps)],'linewidth',1);
             hold on;
             legendMap{i} = num2str(i);
         end
@@ -30,7 +30,7 @@ function allPlotData=plotAllElectrodes(allPowerPieces,f,js,steps,fRange,titleStr
     meanAllPlotData = squeeze(mean(allPlotData,1));
     for i=1:size(meanAllPlotData,1)
         hold on;
-        plot(f,meanAllPlotData(i,:),'color',[i/steps 1-(i/steps) 1-(i/steps)],'linewidth',7);
+        plot(f,meanAllPlotData(i,:),'color',[i/steps 1-(i/steps) 1-(i/steps)],'linewidth',2);
     end
     title([titleString,' Data - all electrodes']);
     xlim(fRange)
