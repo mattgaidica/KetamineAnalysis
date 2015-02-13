@@ -1,4 +1,4 @@
-%after run_barPlots.m we have plotDataBeta/Gamma, these are raw,
+%after run_barPlots_20150213.m we have plotDataBeta/Gamma, these are raw,
 %unnormalized or meaned values
 
 %normalize each mean to a 0-1 value, flip gamma so we can multiply
