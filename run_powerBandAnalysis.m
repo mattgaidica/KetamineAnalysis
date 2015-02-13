@@ -174,14 +174,14 @@ ylabel('power')
 % t(2,:,:)=plotData_1125;
 % t(3,:,:)=plotData_1209;
 % tm=squeeze(mean(t));
-% h2 = figure('position',[0 0 900 400]);
-% for i=1:size(tm,1)
-%     hold on;
-%     plot(f,tm(i,:),'color',[i/steps 1-(i/steps) 1-(i/steps)],'linewidth',5);
-% end
-% title(['20141125 Data - 0916,1125,1209, all electrodes']);
-% xlim([13 30])
-% xlabel('freq')
-% ylabel('power')
+h2 = figure('position',[0 0 900 400]);
+for i=1:size(MAP_M1_mean,1)
+    hold on;
+    plot(f,MAP_M1_mean(i,:),'color',[i/steps 1-(i/steps) 1-(i/steps)],'linewidth',5);
+end
+title(['20141125 Data - 0916,1125,1209, all electrodes']);
+xlim([13 30])
+xlabel('freq')
+ylabel('power')
 
 

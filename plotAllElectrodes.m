@@ -4,7 +4,7 @@ function allPlotData=plotAllElectrodes(allPowerPieces,f,js,steps,fRange,titleStr
     for el=1:length(js)
         subplot(ceil(length(js)/4),4,el);
         allSpectrumPieces = [];
-        for i=1:9%length(allPowerPieces)
+        for i=1:9%!!!!length(allPowerPieces)
             spectrumPieces = allPowerPieces{i}{2}{js(el),2};
             allSpectrumPieces = [allSpectrumPieces;spectrumPieces];
         end
@@ -16,7 +16,7 @@ function allPlotData=plotAllElectrodes(allPowerPieces,f,js,steps,fRange,titleStr
             stop = chunk*i;
             plotData = mean(allSpectrumPieces(start:stop,:));
             allPlotData(el,i,:) = plotData;
-            plot(f,plotData,'color',[i/steps 1-(i/steps) 1-(i/steps)],'linewidth',1);
+            plot(f,plotData,'color',[i/steps 1-(i/steps) 1-(i/steps)],'linewidth',3);
             hold on;
             legendMap{i} = num2str(i);
         end
