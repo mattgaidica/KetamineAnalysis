@@ -5,15 +5,15 @@
 % jsM1_1209 = [1:16];
 % jsS1_1209 = [17:32];
 % 
-% steps = 90;
-% % allPlotData_S10916=plotAllElectrodes(allPowerPieces_0916,f,jsM1_0916,steps,[13 30],'M1 0916');
-% % allPlotData_M10916=plotAllElectrodes(allPowerPieces_0916,f,jsS1_0916,steps,[13 30],'S1 0916');
-% % 
-% allPlotData_S11125=plotAllElectrodes(allPowerPieces_1125,f,jsS1_1125,steps,[10 100],'S1 1125');
-% % allPlotData_M11125=plotAllElectrodes(allPowerPieces_1125,f,jsM1_1125,steps,[13 30],'M1 1125');
+steps = 90;
+% allPlotData_S10916=plotAllElectrodes(allPowerPieces_0916,f,jsM1_0916,steps,[13 30],'M1 0916');
+% allPlotData_M10916=plotAllElectrodes(allPowerPieces_0916,f,jsS1_0916,steps,[13 30],'S1 0916');
 % 
-% allPlotData_S11209=plotAllElectrodes(allPowerPieces_1209,f,jsS1_1209,steps,[10 100],'S1 1209');
-% % allPlotData_M11209=plotAllElectrodes(allPowerPieces_1209,f,jsM1_1209,steps,[13 30],'M1 1209');
+allPlotData_S11125=plotAllElectrodes(allPowerPieces_1125,f,jsS1_1125,steps,[10 100],'S1 1125');
+% allPlotData_M11125=plotAllElectrodes(allPowerPieces_1125,f,jsM1_1125,steps,[13 30],'M1 1125');
+
+allPlotData_S11209=plotAllElectrodes(allPowerPieces_1209,f,jsS1_1209,steps,[10 100],'S1 1209');
+% allPlotData_M11209=plotAllElectrodes(allPowerPieces_1209,f,jsM1_1209,steps,[13 30],'M1 1209');
 
 
 fRange = (f>=40 & f<=55) | (f>=65 & f<=85);

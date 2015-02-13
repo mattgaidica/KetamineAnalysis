@@ -27,7 +27,7 @@ plot(t,zeros(length(t),1),'LineStyle','--','color','k')
 xlabel('Time (m)')
 ylabel('Power')
 
-
+plotDataBeta = plotData;
 plotData = [];
 fRange = (f>=40 & f<=58) | (f>=62 & f<=80);
 for i=1:size(apd,1)
@@ -53,3 +53,4 @@ xlabel('Time (m)')
 ylabel('Power')
 
 legend([line1,line2],{'Beta','Gamma'})
+plotDataGamma = plotData;

@@ -11,7 +11,7 @@ for i=1:size(apd,1)
         plotData(i,:) = smooth(plotData(i,:),10);
     end
 end
-figure('position',[100 100 800 500]);
+figure('position',[100 100 500 800]);
 subplot(2,1,1)
 hold on;
 y1 = mean(plotData)+std(plotData)-mean(mean(plotData));
@@ -24,8 +24,10 @@ fill(X,Y,'r','EdgeColor','none','FaceAlpha',0.7,...
 line1=plot(t,mean(plotData)-mean(mean(plotData)),'color',bColor,...
     'LineWidth',3)
 plot(t,zeros(length(t),1),'LineStyle','--','color','k')
+xlabel('Time (m)')
+ylabel('Power')
 
-
+plotDataBeta = plotData;
 plotData = [];
 fRange = (f>=40 & f<=58) | (f>=62 & f<=80);
 for i=1:size(apd,1)
@@ -47,34 +49,8 @@ fill(X,Y,'r','EdgeColor','none','FaceAlpha',0.7,...
 line2=plot(t,mean(plotData)-mean(mean(plotData)),'color',bColor,...
     'LineWidth',3)
 plot(t,zeros(length(t),1),'LineStyle','--','color','k')
+xlabel('Time (m)')
+ylabel('Power')
 
 legend([line1,line2],{'Beta','Gamma'})
-% errorbar(mean(plotData)-mean(mean(plotData)),std(plotData),'r')
-% stem(t,plotData-mean(plotData));
-% 
-% hold on;
-% fRange = (f>=40 & f<=55);% | (f>=65 & f<=85);
-% apd = squeeze(mean([allPlotData_S11125;allPlotData_S11209],1));
-% plotData = mean(apd(:,fRange),2)./mean(apd(:,lfpRange),2);
-% stem(t,plotData-mean(plotData),'r');
-% 
-% title('1125 & 1209 S1 Beta/Gamma')
-% legend('Beta','Gamma')
-% xlim([0 90])
-% xlabel('Time (m)')
-
-% % figure('position',[0 0 900 900]);
-% hold on
-% plotData=[];
-% for i=1:16
-% %     subplot(4,4,i);
-%     plotData(:,i) = mean(squeeze(apd(i,:,fRange)),2)./...
-%         mean(squeeze(apd(i,:,lfpRange)),2);
-% %     plot(plotData(:,i));
-% %     title(['M11125 - ',num2str(i)]);
-% % %     ylim([0 100])
-% %     hold on;
-% end
-% t=mean(plotData,2);
-% bar(t-mean(t))
-% % title(['M11209']);
+plotDat
