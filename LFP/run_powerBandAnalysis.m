@@ -1,8 +1,8 @@
-% dataDirs = {
-%     'C:\Users\Matt\Desktop\svn_repository\Students\MattGaidica\Data\Raw\Spider Man\2014-12-09\Morning',
-%     'C:\Users\Matt\Desktop\svn_repository\Students\MattGaidica\Data\Raw\Spider Man\2014-12-09\Afternoon'
-%     };
-% chList = [1:16 65:80];
+dataDirs = {
+    '/Users/mattgaidica/Documents/Data/ChestekLab/Data/Raw/Spider Man/2014-12-09/Morning',...
+    '/Users/mattgaidica/Documents/Data/ChestekLab/Data/Raw/Spider Man/2014-12-09/Afternoon'
+    };
+chList = [1:16 65:80];
 % %chList = [1:32];
 % allPowerPieces = makeAllPowerPieces(dataDirs,chList);
 % %-> Each File
@@ -105,22 +105,22 @@ for el=1:length(js)
     %1209
     subplot(4,4,el);
     allSpectrumPieces = [];
-    for i=1:length(allPowerPieces_1209)
-        spectrumPieces = allPowerPieces_1209{i}{2}{js(el),2};
+    for ii=1:length(allPowerPieces_1209)
+        spectrumPieces = allPowerPieces_1209{ii}{2}{js(el),2};
         allSpectrumPieces = [allSpectrumPieces;spectrumPieces];
     end
 
     legendMap = {};
     steps = 3;
-    for i=1:steps
+    for ii=1:steps
         chunk = size(allSpectrumPieces,1)/steps;
         hold on;
-        start = (chunk*(i-1))+1;
-        stop = chunk*i;
+        start = (chunk*(ii-1))+1;
+        stop = chunk*ii;
         plotData = mean(allSpectrumPieces(start:stop,:));
-        allPlotData(el,i,:) = plotData;
-        plot(f,plotData,'color',[i/steps 1-(i/steps) 1-(i/steps)],'linewidth',7);
-        legendMap{i} = num2str(i);
+        allPlotData(el,ii,:) = plotData;
+        plot(f,plotData,'color',[ii/steps 1-(ii/steps) 1-(ii/steps)],'linewidth',7);
+        legendMap{ii} = num2str(ii);
     end
     title(['20141209 Data - electrode',num2str(js(el))]);
     xlim([13 30])
@@ -158,30 +158,30 @@ for el=1:length(js)
 %     close(h1)
 end
 
-h2 = figure('position',[0 0 900 400]);
+% h2 = figure('position',[0 0 900 400]);
 meanAllPlotData = squeeze(mean(allPlotData,1));
-for i=1:size(meanAllPlotData,1)
-    hold on;
-    plot(f,meanAllPlotData(i,:),'color',[i/steps 1-(i/steps) 1-(i/steps)],'linewidth',7);
-end
-title(['M1-0916']);
-xlim([13 30])
-xlabel('freq')
-ylabel('power')
+% for i=1:size(meanAllPlotData,1)
+%     hold on;
+%     plot(f,meanAllPlotData(i,:),'color',[i/steps 1-(i/steps) 1-(i/steps)],'linewidth',7);
+% end
+% title(['M1-0916']);
+% xlim([13 30])
+% xlabel('freq')
+% ylabel('power')
 
 % t=[];
 % t(1,:,:)=plotData_0916;
 % t(2,:,:)=plotData_1125;
 % t(3,:,:)=plotData_1209;
 % tm=squeeze(mean(t));
-h2 = figure('position',[0 0 900 400]);
-for i=1:size(MAP_M1_mean,1)
-    hold on;
-    plot(f,MAP_M1_mean(i,:),'color',[i/steps 1-(i/steps) 1-(i/steps)],'linewidth',5);
-end
-title(['20141125 Data - 0916,1125,1209, all electrodes']);
-xlim([13 30])
-xlabel('freq')
-ylabel('power')
+% h2 = figure('position',[0 0 900 400]);
+% for i=1:size(MAP_M1_mean,1)
+%     hold on;
+%     plot(f,MAP_M1_mean(i,:),'color',[i/steps 1-(i/steps) 1-(i/steps)],'linewidth',5);
+% end
+% title(['20141125 Data - 0916,1125,1209, all electrodes']);
+% xlim([13 30])
+% xlabel('freq')
+% ylabel('power')
 
 
