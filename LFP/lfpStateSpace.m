@@ -9,8 +9,8 @@ plotType = 2;
 f = allPowerPieces{1,1}{1,2}{1,3};
 bandIdx{1} = f>=1 & f<4;
 bandIdx{2} = f>=13 & f<=30;
-bandIdx{3} = (f>=40 & f<=58) | (f>=62 & f<=80); %does this matter?
-bandIdx{4} = f>=10 & f<=100;
+bandIdx{3} = (f>=40 & f<=58) | (f>=62 & f<80); %does this matter?
+bandIdx{4} = f>=10 & f<100;
 
 [timeSeries,powerSeries] = makeTimeSeries(allPowerPieces);
 timeSegments = 50;
@@ -37,8 +37,16 @@ for iCh = 1:length(channels)
     end
 end
 
-% be careful about using iCh
+normalCma = [];
+for iBand=1:4
+    allCma = [];
+    for iCh=1:length(channels)
+        allCma(iCh,:) = normalize(squeeze(squeeze(bands(iCh,iBand,:))));
+    end
+    normalCma(:,iBand) = mean(allCma);
+end
 
+% be careful about using iCh
 figure('position',[0 0 1000 1000]);
 for iCh=1:length(channels)
     if plotType == 1
@@ -57,10 +65,10 @@ for iCh=1:length(channels)
         zlim([0 1])
         colormap(jet);
     else
-        for ii=1:3
+        for iBand=1:4
             hold on;
-            subplot(3,1,ii);
-            data = normalize(squeeze(squeeze(bands(iCh,ii,:))))-normalize(squeeze(squeeze(bands(iCh,4,:))));
+            subplot(4,1,iBand);
+            data = normalize(medfilt1(normalize(squeeze(squeeze(bands(iCh,iBand,:))))-normalCma(:,iBand),3));%./squeeze(squeeze(bands(iCh,4,:)));
             plot(data);
         end
     end

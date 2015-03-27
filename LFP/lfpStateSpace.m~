@@ -1,4 +1,4 @@
-function lfpStateSpace(allPowerPieces,channels,cmap)
+function lfpStateSpace(allPowerPieces,channels)
 % channels = [17:32];
 % bandLimits is three LFP axes limits plus one LFP calibration limit
 % [] high res saving http://www.mathworks.com/matlabcentral/newsreader/view_thread/287268
@@ -9,11 +9,11 @@ plotType = 2;
 f = allPowerPieces{1,1}{1,2}{1,3};
 bandIdx{1} = f>=1 & f<4;
 bandIdx{2} = f>=13 & f<=30;
-bandIdx{3} = (f>=40 & f<=58) | (f>=62 & f<=80); %does this matter?
-bandIdx{4} = f>=10 & f<=100;
+bandIdx{3} = (f>=40 & f<=58) | (f>=62 & f<80); %does this matter?
+bandIdx{4} = f>=10 & f<100;
 
 [timeSeries,powerSeries] = makeTimeSeries(allPowerPieces);
-timeSegments = 40;
+timeSegments = 50;
 timeStep = linspace(0,100,timeSegments+1); %minutes
 timeStep = timeStep(2:end); %throw out first mark
 bands = [];
@@ -37,8 +37,15 @@ for iCh = 1:length(channels)
     end
 end
 
-% be careful about using iCh
+normalCma = [];
+for iBand=1:4
+    allCma = [];
+    for iCh=1:length(channels)
+        allCma(iCh,iBand) = normalize(squeeze(squeeze(bands(iCh,ii,:))));
+    end
+end
 
+% be careful about using iCh
 figure('position',[0 0 1000 1000]);
 for iCh=1:length(channels)
     if plotType == 1
@@ -47,7 +54,7 @@ for iCh=1:length(channels)
         colormapscatter(normalize(squeeze(squeeze(bands(iCh,1,:))))-normalize(squeeze(squeeze(mean(bands(:,4,:))))),...
             normalize(squeeze(squeeze(bands(iCh,2,:))))-normalize(squeeze(squeeze(bands(iCh,4,:)))),...
             normalize(squeeze(squeeze(bands(iCh,3,:))))-normalize(squeeze(squeeze(bands(iCh,4,:)))),...
-            cmap,100);
+            jet,100);
         xlabel('Delta (1-4 Hz)')
         ylabel('Beta (13-30 Hz)');
         zlabel('Gamma (40-80 Hz)');
@@ -55,28 +62,14 @@ for iCh=1:length(channels)
         xlim([0 1]);
         ylim([0 1]);
         zlim([0 1])
-        colormap(cmap);
+        colormap(jet);
     else
-        hold on;
-        subplot(411);
-        data = (squeeze(squeeze(bands(iCh,1,:)))-mean(squeeze(squeeze(bands(iCh,1,:)))))-squeeze(squeeze(mean(bands(:,1,:))));
-        plot(data);
-        title('delta');
-        
-        hold on;
-        subplot(412);
-        plot(squeeze(squeeze(bands(iCh,2,:)))-mean(squeeze(squeeze(bands(iCh,2,:)))));
-        title('beta');
-        
-        hold on;
-        subplot(413);
-        plot(squeeze(squeeze(bands(iCh,3,:)))-mean(squeeze(squeeze(bands(iCh,3,:)))));
-        title('gamma');
-        
-        hold on;
-        subplot(414);
-        plot(squeeze(squeeze(bands(iCh,4,:)))-mean(squeeze(squeeze(bands(iCh,4,:)))));
-        title('gamma');
+        for ii=1:4
+            hold on;
+            subplot(4,1,ii);
+            data = normalize(squeeze(squeeze(bands(iCh,ii,:))))-normalize(squeeze(squeeze(mean(bands(:,ii,:)))));%./squeeze(squeeze(bands(iCh,4,:)));
+            plot(data);
+        end
     end
 end
 disp('end')
