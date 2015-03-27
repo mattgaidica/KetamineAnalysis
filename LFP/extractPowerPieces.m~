@@ -3,9 +3,10 @@
 % 20150118
 
 % chList = [1:16 65:80];
-function [powerPieces,startOffsetSeconds]=extractPowerPieces(filename,...
+function [powerPieces,dataDuration]=extractPowerPieces(file,...
     chList,pieceLengthSeconds,startOffsetSeconds)
-NSx = openNSx(filename,'read');
+NSx = openNSx(file,'read');
+dataDuration = NSx.MetaTags.DataDurationSec;
 
 decimateFactor = 10;
 artifacThresh = 5e3; %this seems appropriate for all files
@@ -28,7 +29,7 @@ end
 % powerPieces = cell(channel, Nxf Spectrum (0-500Hz?) for each
 % piece, 1xN f (spectrum frequency linspace vector
 powerPieces = {};
-extractCutoff = 100; %Hz
+fLpCutoff = 100;
 for i=1:length(chList)
     pieceSpectrums = [];
     chData = decimate(double(NSx.Data(chList(i),:)),decimateFactor);
@@ -36,11 +37,9 @@ for i=1:length(chList)
         disp([num2str(i),':',num2str(j)]);
         Y = fft(double(chData(pieces{i}(j,1):pieces{i}(j,2))),NFFT)/L;
         A = 2*abs(Y(1:NFFT/2+1));
-        pieceSpectrums(j,:) = A(f<=extractCutoff);
+        pieceSpectrums(j,:) = A(f<=fLpCutoff); % up to 1000 Hz
     end
-    powerPieces(i,:) = {chList(i),pieceSpectrums,f(f<=extractCutoff),...
-        (pieces{i}(:,1)./NSx.MetaTags.SamplingFreq)*decimateFactor+startOffsetSeconds};
+    powerPieces(i,:) = {chList(i),pieceSpectrums,f(f<=fLpCutoff),};
 end
-startOffsetSeconds = startOffsetSeconds + NSx.MetaTags.DataDurationSec;
 clear('chData');
 clear('NSx');

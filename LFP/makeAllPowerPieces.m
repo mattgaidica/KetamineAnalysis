@@ -10,10 +10,11 @@ function allPowerPieces=makeAllPowerPieces(dataDirs,chList)
     end
 
     % get power pieces for each file
+    startOffsetSeconds = 0;
     allPowerPieces = {};
     for i=1:fileCount
         %extract 5s peices
-        powerPieces = extractPowerPieces(fileList{i},chList,5);
+        [powerPieces,startOffsetSeconds] = extractPowerPieces(fileList{i},chList,5,startOffsetSeconds);
         allPowerPieces{i} = {fileList{i},powerPieces};
     end
 end

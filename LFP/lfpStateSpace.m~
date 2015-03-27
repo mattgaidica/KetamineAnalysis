@@ -1,0 +1,48 @@
+function lfpStateSpace(allPowerPieces,channels)
+% channels = [17:32];
+% bandLimits is three LFP axes limits plus one LFP calibration limit
+% [] calibration band
+
+plotType = 1;
+
+f = allPowerPieces{1,1}{1,2}{1,3};
+bandIdx{1} = f>=1 & f<4;
+bandIdx{2} = f>=13 & f<=30;
+bandIdx{3} = (f>=40 & f<=58) | (f>=62 & f<=80); %does this matter?
+bandIdx{4} = f>=10 & f<=100;
+
+figure('position',[0 0 600 600]);
+for iCh = 1:length(channels)
+    bands = [];
+    % run through all the files
+    for iFile = 1:length(allPowerPieces)
+        % run through all the pieces for channels of interest
+        t = [];
+        for ii=1:4 %all bands including calibration
+            t(ii,:) =  mean(allPowerPieces{1,iFile}{1,2}{channels(iCh),2}(:,bandIdx{ii}),2);
+        end
+        bands = [bands t];
+    end
+
+    stateSpace = [];
+    for ii=1:3
+        stateSpace(ii,:) = bands(ii,:)./bands(4,:);
+    end
+    
+    %plotChop = round(linspace(80,size(stateSpace,2)-100,30));
+
+    hold on;
+    grid on;
+    if plotType == 1
+        % colormapscatter(stateSpace(1,plotChop),stateSpace(2,plotChop),stateSpace(3,plotChop),jet);
+        colormapscatter(stateSpace(1,:),stateSpace(2,:),stateSpace(3,:),hsv);
+        xlabel('delta')
+        ylabel('beta');
+        zlabel('gamma');
+        view(3);
+        colorbar;
+        colormap(hsv);
+    elseif plotType == 2
+        
+    end
+end
