@@ -1,4 +1,4 @@
-function [handle_all] = colormapline(x,y,z,colmap,dotSize)
+function [handle_all] = colormapscatter(x,y,z,colmap,dotSize)
 % H = colormapline(X,Y,Z,C) Plot a line using a specified colormap
 %   If Z is given, a 3D plot with coordinates X, Y, Z is created.
 %   If Z is not given, a 2D plot of Y over X if created.
