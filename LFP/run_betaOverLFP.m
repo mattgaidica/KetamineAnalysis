@@ -21,7 +21,7 @@ for i=1:length(allPowerPieces_20150902)
         disp(num2str(size(spectrumPieces,1)));
         f = allPowerPieces_20150902{i}{2}{1,3};
         fRange= f>=13 & f<=30;
-        fRange= f>=40 & f<=58 | f>=62 & f<=80;
+%         fRange= f>=40 & f<=58 | f>=62 & f<=80;
         LFPrange = f>=10 & f<=80;
         if(~isempty(spectrumPieces))
             %betaOverLFP = [betaOverLFP (spectrumPieces(:,fRange)/spectrumPieces(:,LFPrange))];

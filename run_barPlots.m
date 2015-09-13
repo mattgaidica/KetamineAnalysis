@@ -1,6 +1,7 @@
 t = linspace(0,90,steps);
 apd = [allPlotData];
 plotData = [];
+bColor = [100/360,100/360,100/360];
 
 fRange = f>=1 & f<=4;
 lfpRange = f>=10 & f<100;
@@ -17,7 +18,6 @@ y1 = mean(plotData)+std(plotData)-mean(mean(plotData));
 y2 = mean(plotData)-std(plotData)-mean(mean(plotData));
 X = [t fliplr(t)];
 Y = [y1,fliplr(y2)];
-bColor = [50/360,121/360,238/360];
 fill(X,Y,'r','EdgeColor','none','FaceAlpha',0.7,...
     'FaceColor',bColor)
 line1 = plot(t,mean(plotData)-mean(mean(plotData)),'color',bColor,...
@@ -34,14 +34,12 @@ for i=1:size(apd,1)
         plotData(i,:) = smooth(plotData(i,:),10);
     end
 end
-figure('position',[100 100 500 800]);
 subplot(312)
 hold on;
 y1 = mean(plotData)+std(plotData)-mean(mean(plotData));
 y2 = mean(plotData)-std(plotData)-mean(mean(plotData));
 X = [t fliplr(t)];
 Y = [y1,fliplr(y2)];
-bColor = [50/360,121/360,238/360];
 fill(X,Y,'r','EdgeColor','none','FaceAlpha',0.7,...
     'FaceColor',bColor)
 line2 = plot(t,mean(plotData)-mean(mean(plotData)),'color',bColor,...
@@ -65,7 +63,6 @@ y1 = mean(plotData)+std(plotData)-mean(mean(plotData));
 y2 = mean(plotData)-std(plotData)-mean(mean(plotData));
 X = [t fliplr(t)];
 Y = [y1,fliplr(y2)];
-bColor = [61/360,166/360,59/360];
 fill(X,Y,'r','EdgeColor','none','FaceAlpha',0.7,...
     'FaceColor',bColor)
 line3 = plot(t,mean(plotData)-mean(mean(plotData)),'color',bColor,...
