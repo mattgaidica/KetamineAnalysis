@@ -7,10 +7,10 @@ chList = [1:16 65:80]; %1209
 % };
 
 dataDirs = {
-'/Users/mattgaidica/Documents/Data/ChestekLab/Data/Raw/Spider Man/2014-12-09/Morning',...
+'/Users/mattgaidica/Documents/Data/ChestekLab/Data/Raw/Spider Man/2014-12-09/Afternoon',...
 '/Users/mattgaidica/Documents/Data/ChestekLab/Data/Raw/Spider Man/2014-12-09/Afternoon'
 };
-allPowerPieces_20141209=makeAllPowerPieces(dataDirs,chList);
+allPowerPieces_20141125=makeAllPowerPieces(dataDirs,chList);
 
 % dataDirs = {
 % '/Users/mattgaidica/Documents/Data/ChestekLab/Data/Raw/Spider Man/2014-12-09/Morning',...

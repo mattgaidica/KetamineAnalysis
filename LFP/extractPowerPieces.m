@@ -34,7 +34,7 @@ end
 % powerPieces = cell(channel, Nxf Spectrum (0-500Hz?) for each
 % piece, 1xN f (spectrum frequency linspace vector
 powerPieces = {};
-extractCutoff = 200; %Hz
+extractCutoff = 100; %Hz
 for i=1:length(chList)
     pieceSpectrums = [];
     chData = decimate(double(NSx.Data(chList(i),:)),decimateFactor);

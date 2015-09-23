@@ -11,15 +11,15 @@
 betaOverLFP = [];
 crapChannels = [];
 % figure('position',[0 0 900 900]);
-for i=1:length(allPowerPieces_20150902)
+for i=1:length(allPowerPieces_20150915)
     meanChSpectrums = [];
     LFPpower = [];
     %for j=[19,22,25,28,30,31] 19,25,28,30
     for jj=1:64
         disp([num2str(i),':',num2str(jj)])
-        spectrumPieces = allPowerPieces_20150902{i}{2}{jj,2};
+        spectrumPieces = allPowerPieces_20150915{i}{2}{jj,2};
         disp(num2str(size(spectrumPieces,1)));
-        f = allPowerPieces_20150902{i}{2}{1,3};
+        f = allPowerPieces_20150915{i}{2}{1,3};
         fRange= f>=13 & f<=30;
 %         fRange= f>=40 & f<=58 | f>=62 & f<=80;
         LFPrange = f>=10 & f<=80;

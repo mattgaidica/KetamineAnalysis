@@ -47,6 +47,7 @@
 %     %plot(betaOverLFP_odd{js(i)},'r');
 % end
 js = [65:80];
+% js = [65:80];
 h1 = figure('position',[0 0 900 900]);
 allPlotData = [];
 for el=1:length(js)
@@ -103,54 +104,55 @@ for el=1:length(js)
 %     legend(legendMap)
 
     %1209
-%     subplot(4,4,el);
-%     allSpectrumPieces = [];
-%     for ii=1:length(allPowerPieces_1209)
-%         spectrumPieces = allPowerPieces_1209{ii}{2}{js(el),2};
-%         allSpectrumPieces = [allSpectrumPieces;spectrumPieces];
-%     end
-% 
-%     legendMap = {};
-%     steps = 3;
-%     for ii=1:steps
-%         chunk = size(allSpectrumPieces,1)/steps;
-%         hold on;
-%         start = (chunk*(ii-1))+1;
-%         stop = chunk*ii;
-%         plotData = mean(allSpectrumPieces(start:stop,:));
-%         allPlotData(el,ii,:) = plotData;
-%         plot(f,plotData,'color',[ii/steps 1-(ii/steps) 1-(ii/steps)],'linewidth',7);
-%         legendMap{ii} = num2str(ii);
-%     end
-%     title(['20141209 Data - electrode',num2str(js(el))]);
-%     xlim([13 30])
-%     xlabel('freq')
-%     ylabel('power')
+% %     subplot(4,4,el);
+% %     allSpectrumPieces = [];
+% %     for ii=1:length(allPowerPieces_1209)
+% %         spectrumPieces = allPowerPieces_1209{ii}{2}{js(el),2};
+% %         allSpectrumPieces = [allSpectrumPieces;spectrumPieces];
+% %     end
+% % 
+% %     legendMap = {};
+% %     steps = 90;
+% %     for ii=1:steps
+% %         chunk = size(allSpectrumPieces,1)/steps;
+% %         hold on;
+% %         start = (chunk*(ii-1))+1;
+% %         stop = chunk*ii;
+% %         plotData = mean(allSpectrumPieces(start:stop,:));
+% %         allPlotData(el,ii,:) = plotData;
+% %         plot(f,plotData,'color',[ii/steps 1-(ii/steps) 1-(ii/steps)],'linewidth',7);
+% %         legendMap{ii} = num2str(ii);
+% %     end
+% %     title(['20141209 Data - electrode',num2str(js(el))]);
+% %     xlim([13 30])
+% %     xlabel('freq')
+% %     ylabel('power')
     
     %1125
-%     subplot(4,4,el);
-%     allSpectrumPieces = [];
-%     for i=1:length(allPowerPieces_1125)
-%         spectrumPieces = allPowerPieces_1125{i}{2}{js(el),2};
-%         allSpectrumPieces = [allSpectrumPieces;spectrumPieces];
-%     end
-% 
-%     legendMap = {};
-%     steps = 5;
-%     for i=1:steps
-%         chunk = size(allSpectrumPieces,1)/steps;
-%         hold on;
-%         start = (chunk*(i-1))+1;
-%         stop = chunk*i;
-%         plotData = mean(allSpectrumPieces(start:stop,:));
-%         allPlotData(el,i,:) = plotData;
-%         plot(f,plotData,'color',[i/steps 1-(i/steps) 1-(i/steps)],'linewidth',5);
-%         legendMap{i} = num2str(i);
-%     end
-%     title(['20141125 Data - electrode',num2str(js(el))]);
-%     xlim([1 4])
-%     xlabel('freq')
-%     ylabel('power')
+    subplot(4,4,el);
+    allSpectrumPieces = [];
+    for ii=1:length(allPowerPieces_20150915)
+        spectrumPieces = allPowerPieces_20150915{ii}{2}{js(el),2};
+        f = allPowerPieces_20150915{ii}{2}{1,3};
+        allSpectrumPieces = [allSpectrumPieces;spectrumPieces];
+    end
+
+    legendMap = {};
+    steps = 90;
+    for ii=1:steps
+        chunk = size(allSpectrumPieces,1)/steps;
+        hold on;
+        start = (chunk*(ii-1))+1;
+        stop = chunk*ii;
+        plotData = mean(allSpectrumPieces(start:stop,:));
+        allPlotData(el,ii,:) = plotData;
+        plot(f,plotData,'color',[ii/steps 1-(ii/steps) 1-(ii/steps)],'linewidth',5);
+        legendMap{ii} = num2str(ii);
+    end
+    title(['20141125 Data - electrode',num2str(js(el))]);
+    xlim([1 4])
+    xlabel('freq')
+    ylabel('power')
 
 %     %0515
 %     subplot(4,4,el);
@@ -178,30 +180,58 @@ for el=1:length(js)
 %     ylabel('power')
 
 
-    %20150902
-    subplot(4,4,el);
-    allSpectrumPieces = [];
-    for ii=1:length(allPowerPieces_20150902)
-        spectrumPieces = allPowerPieces_20150902{ii}{2}{js(el),2};
-        allSpectrumPieces = [allSpectrumPieces;spectrumPieces];
-    end
-
-    legendMap = {};
-    steps = 5;
-    for ii=1:steps
-        chunk = size(allSpectrumPieces,1)/steps;
-        hold on;
-        start = (chunk*(ii-1))+1;
-        stop = chunk*ii;
-        plotData = mean(allSpectrumPieces(start:stop,:));
-        allPlotData(el,ii,:) = plotData;
-        plot(f,plotData,'color',[ii/steps 1-(ii/steps) 1-(ii/steps)],'linewidth',7);
-        legendMap{ii} = num2str(ii);
-    end
-    title(['20150902 Data - electrode',num2str(js(el))]);
-    xlim([13 30])
-    xlabel('freq')
-    ylabel('power')
+%     %20150902
+%     subplot(4,4,el);
+%     allSpectrumPieces = [];
+%     for ii=1:length(allPowerPieces_20150902)
+%         spectrumPieces = allPowerPieces_20150902{ii}{2}{js(el),2};
+%         allSpectrumPieces = [allSpectrumPieces;spectrumPieces];
+%     end
+% 
+%     legendMap = {};
+%     steps = 90;
+%     for ii=1:steps
+%         chunk = size(allSpectrumPieces,1)/steps;
+%         hold on;
+%         start = (chunk*(ii-1))+1;
+%         stop = chunk*ii;
+%         plotData = mean(allSpectrumPieces(start:stop,:));
+%         allPlotData(el,ii,:) = plotData;
+%         plot(f,plotData,'color',[ii/steps 1-(ii/steps) 1-(ii/steps)],'linewidth',7);
+%         legendMap{ii} = num2str(ii);
+%     end
+%     title(['20150902 Data - electrode',num2str(js(el))]);
+%     xlim([13 30])
+% %     ylim([5 20])
+%     xlabel('freq')
+%     ylabel('power')
+    
+    %20150915
+% %     subplot(4,4,el);
+% %     allSpectrumPieces = [];
+% %     for ii=1:length(allPowerPieces_20150915)
+% %         spectrumPieces = allPowerPieces_20150915{ii}{2}{js(el),2};
+% %         allSpectrumPieces = [allSpectrumPieces;spectrumPieces];
+% %         f = allPowerPieces_20150915{ii}{2}{1,3};
+% %     end
+% % 
+% %     legendMap = {};
+% %     steps = 90;
+% %     for ii=1:steps
+% %         chunk = size(allSpectrumPieces,1)/steps;
+% %         hold on;
+% %         start = (chunk*(ii-1))+1;
+% %         stop = chunk*ii;
+% %         plotData = mean(allSpectrumPieces(start:stop,:));
+% %         allPlotData(el,ii,:) = plotData;
+% %         plot(f,plotData,'color',[ii/steps 1-(ii/steps) 1-(ii/steps)],'linewidth',7);
+% %         legendMap{ii} = num2str(ii);
+% %     end
+% %     title(['20150915 Data - electrode',num2str(js(el))]);
+% %     xlim([13 30])
+% % % %    ylim([5 20])
+% %     xlabel('freq')
+% %     ylabel('power')
     
 
 %     %legend(legendMap)
