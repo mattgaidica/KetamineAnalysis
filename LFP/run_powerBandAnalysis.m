@@ -46,7 +46,7 @@
 %     disp(js(i));
 %     %plot(betaOverLFP_odd{js(i)},'r');
 % end
-js = [65:80];
+js = [65:128];
 % js = [65:80];
 h1 = figure('position',[0 0 900 900]);
 allPlotData = [];
@@ -129,7 +129,7 @@ for el=1:length(js)
 % %     ylabel('power')
     
     %1125
-    subplot(4,4,el);
+    subplot(8,8,el);
     allSpectrumPieces = [];
     for ii=1:length(allPowerPieces_20150915)
         spectrumPieces = allPowerPieces_20150915{ii}{2}{js(el),2};
