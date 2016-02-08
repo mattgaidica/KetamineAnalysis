@@ -1,5 +1,6 @@
 t = linspace(0,90,steps);
-apd = [allPlotData_S11125;allPlotData_S11209];
+% apd = [allPlotData_S11125;allPlotData_S11209];
+apd = [allPlotData];
 
 plotData = [];
 fRange = f>=13 & f<=30;

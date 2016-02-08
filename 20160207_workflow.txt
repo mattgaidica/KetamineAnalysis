@@ -1,0 +1,25 @@
+- Use run.m to generate allPowerPieces_YYYYMMDD cell. Define the chList as the channels that M1 and S1 data are in (i.e.):
+
+> chList = [1:16 65:80]; %1209 (M1=1:16 & S1=65:80)
+> dataDirs = {
+'/Users/mattgaidica/Documents/Data/ChestekLab/Data/Raw/Spider Man/2014-12-09/Morning',...
+'/Users/mattgaidica/Documents/Data/ChestekLab/Data/Raw/Spider Man/2014-12-09/Afternoon'
+};
+> allPowerPieces_20141209=makeAllPowerPieces(dataDirs,chList);
+
+---
+
+- lfpStateSpace.m to generate all colored spheres plot AND tri-band line plots. The second input refers to the way that you defined chList above (M1=1:16 & S1=17:32 now):
+
+> lfpStateSpace(allPowerPieces_20141209,[1:16],1,true);
+> lfpStateSpace(allPowerPieces_20141209,[17:32],1,true);
+
+> lfpStateSpace(allPowerPieces_20141209,[1:16],3,true);
+> lfpStateSpace(allPowerPieces_20141209,[17:32],3,true);
+
+---
+
+- Use plotAllElectrodes.m for colored line plots of specific freqs:
+
+> plotAllElectrodes(allPowerPieces_20141209,[1:16],10,[13 30],'M1 beta');
+> plotAllElectrodes(allPowerPieces_20141209,[17:32],10,[13 30],'S1 beta');

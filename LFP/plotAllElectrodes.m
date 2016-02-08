@@ -9,9 +9,9 @@ function allPlotData=plotAllElectrodes(allPowerPieces,js,steps,fRange,titleStrin
             spectrumPieces = allPowerPieces{ii}{2}{js(el),2};
             allSpectrumPieces = [allSpectrumPieces;spectrumPieces];
         end
-
+% debug figures
         legendMap = {};
-        figure;
+        h = figure;
         for ii=1:steps
             chunk = floor(size(allSpectrumPieces,1)/steps);
             start = (chunk*(ii-1))+1;
@@ -29,6 +29,9 @@ function allPlotData=plotAllElectrodes(allPowerPieces,js,steps,fRange,titleStrin
         xlabel('freq')
         ylabel('power')
         set(gca,'xgrid','on')
+        
+        % comment for debug mode
+        close(h);
     end
     
     h2 = figure('position',[0 0 600 300]);

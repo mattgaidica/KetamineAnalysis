@@ -13,13 +13,13 @@ timeStep = linspace(0,endSession,timeSegments+2); %minutes
     
 for iP = 1:size(allPowerPiecesCell,2)
     allPowerPieces = allPowerPiecesCell{1,iP};
-    f = allPowerPieces{1,1}{1,2}{1,3};
+    f = allPowerPiecesCell{1,1}{1,2}{1,3};
     bandIdx{1} = f>=1 & f<4;
-    bandIdx{2} = f>=15 & f<=25;
+    bandIdx{2} = f>=13 & f<=30;
     bandIdx{3} = (f>=40 & f<=58) | (f>=62 & f<80); %does this matter?
     bandIdx{4} = f>=10 & f<100;
 
-    [timeSeries,powerSeries] = makeTimeSeries(allPowerPieces);
+    [timeSeries,powerSeries] = makeTimeSeries(allPowerPiecesCell);
     bands = [];
     for iCh = 1:length(channels)
         for iSeg = 1:length(timeStep)-1
