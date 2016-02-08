@@ -1,4 +1,4 @@
-- Use run.m to generate allPowerPieces_YYYYMMDD cell. Define the chList as the channels that M1 and S1 data are in (i.e.):
+- Use run.m in the LFP folder to generate allPowerPieces_YYYYMMDD cell. Define the chList as the channels that M1 and S1 data are in (i.e.):
 
 > chList = [1:16 65:80]; %1209 (M1=1:16 & S1=65:80)
 > dataDirs = {
